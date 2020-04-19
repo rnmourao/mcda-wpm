@@ -1,2 +1,2 @@
-# mcda-weighted-product-model
+# mcda-wpm
 Decision Analysis using Weighted Product Model
