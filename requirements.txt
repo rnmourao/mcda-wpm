@@ -4,3 +4,4 @@ numpy==1.18.3
 pandas==1.0.3
 requests==2.23.0
 scikit-learn==0.22.2.post1
+tabulate==0.8.7
