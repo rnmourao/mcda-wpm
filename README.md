@@ -1,10 +1,10 @@
 # Decision Analysis using Weighted Product Model
 
-As a friendly Data Scientist, coworkers always come to me with different problems to get some help. People ask me to create a model, a formula, a chart, something...to solve some quantitative problem.
+As a friendly Data Scientist, coworkers always come to me with interesting problems to get some help. People ask me to create a model, a formula, a chart, something...to solve some quantitative problem.
 
-In the past six months, a recurring problem appeared for different people: how to decide on the best project, the best item, the best apartment among multiple alternatives, based on multiple criteria?
+In the past six months, a recurring problem appeared for different people: how to decide on the best project, the best item, the best apartment among many alternatives, based on multiple criteria?
 
-People may think I pick, without hesitation, some amazing Artificial Intelligence algorithm, a Deep Learning classifier, or even a Hill-climbing Ensemble Selection with Bootstrap Sampling. However, as Robert Browning said, "Well, less is more, Lucrezia".
+People may think I pick, without hesitation, some amazing Artificial Intelligence algorithm, a Deep Learning classifier, or even a Hill-climbing Ensemble Selection with Bootstrap Sampling. Yet, as Robert Browning said, "Well, less is more, Lucrezia".
 
 A Weighted Product Model (WPM) is a simple and popular technique to solve Multi-Criteria Decision Analysis problems. It basically consists of multiply all attributes values to get a score. The higher, the better.
 
