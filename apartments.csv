@@ -1,6 +1,6 @@
-bedrooms,bathrooms,area,hoa,parking,year,floor,exposure,elevator,price
-1,1,750,546.00,1,1951,4,W,Yes,175000.00
+beds,baths,area,hoa,parking,year,floor,exposure,elevator,price
 1,1,700,230.00,0,1895,2,W,No,199000.00
-3,2,1600,150.00,0,2020,3,E,No,279000.00
+1,1,750,546.00,1,1951,4,W,Yes,185000.00
 1,1,985,424.00,1,1892,3,W,Yes,210000.00
 2,2,1200,973.00,1,1965,8,E,Yes,209900.00
+3,2,1600,150.00,0,2020,3,E,No,279000.00
