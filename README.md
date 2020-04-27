@@ -16,7 +16,7 @@ As an example, look at the following table:
 |Project 2|27|8|14|10|
 |Project 3|8|25|13|36|
 
-A WPM score for the first line is:
+The WPM score for the first line is:
 
 Project 1 = 30 x 17 x 5 x 20 = 51,000
 
@@ -152,8 +152,7 @@ Then, we apply the function over the rows:
 ```{python}
 df['wpm'] = df.apply(lambda r: wpm(r, weights), axis=1)
 
-# merge the wpm score with the original table to guarantee
-# a better interpretation of the results
+# merge the wpm score with the original table to a better interpretation of the results
 pd.merge(raw, df['wpm'], left_index=True, right_index=True) \
   .sort_values(by='wpm', ascending=False)
 ```
