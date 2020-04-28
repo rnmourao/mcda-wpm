@@ -31,6 +31,7 @@ where:
 - *v<sub>i</sub>* : value of the i-th feature
 - *w<sub>i</sub>* : weight of the i-th feature
 
+
 Thus, using the score provided by the WPM, the preferences are ranked like this
 
 |Projects / Features|A|B|C|D|WPM
@@ -40,6 +41,8 @@ Thus, using the score provided by the WPM, the preferences are ranked like this
 |Project 2|27|8|14|10|30,240|
 
 if the weights are the same for each feature (*w<sub>i</sub> = 1*).
+
+## A Real Life Problem
 
 Weight Product Model is a very easy technique. You may use any programming language (even a spreadsheet). To show how to do it in Python, let's take another example:
 
@@ -113,7 +116,7 @@ Now, every value is between 10 and 100.
 It's time to define the weights:
 
 ```{python}
-weights = {'beds'          :   1.,
+weights = {'beds'          :  1.,
            'baths'         :  1.,
            'area'          :  1.,
            'hoa'           : -1.,
@@ -191,4 +194,22 @@ Parking space, elevator, cheap HOA, and low floor are now essential; area and pr
 |4|3|2|1600|150.00|0|2020|3|E|No|279,000|1.024e+06|
 |0|1|1|700|230.00|0|1895|2|W|No|199,000|40.7762|
 
-The WPM score now has an entirely different scale, but that doesn't matter, because only the ranking is important.
+The WPM score now has an entirely different scale, but that doesn't matter, because only the ranking is relevant.
+
+## Don'ts
+
+As I said before, you need to take some precautions to use the WPM correctly. 
+
+First of all, you NEED to scale the table. All features. Ever. People might say you don't need to do that because the data is already prepared or WPM itself doesn't need it. 
+
+Second: don't scale the values to [0, 1] range. Prefer values bigger than that. Why? Because of the following power properties:
+
+![power-properties](images/properties.png)
+
+0 is almost always 0, 1 is always 1, and a fraction will become smaller if you apply a power greater than 1. So, choose another range.
+
+Related to the weights, you can use any value. But again, keep it simple: use integers, negatives only when a feature is an onus, and beware with zero.
+
+## WPM is cool, but...
+
+Decision analysis has many techniques and solves a lot of problems. If you are interested to learn more about it, feel free to follow the links I put at the end of this post. 
