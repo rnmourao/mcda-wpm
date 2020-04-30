@@ -1,12 +1,13 @@
-# Decision Analysis using Weighted Product Model
+# Free Yourself from Indecision with Weighted Product Models
+## How companies and crazy data scientists use [Decision Analysis](https://www.investopedia.com/terms/d/decision-analysis.asp) to choose things
 
 As a friendly Data Scientist, coworkers always come to me with interesting problems to get some help. People ask me to create a model, a formula, a chart, something...to solve some quantitative problem.
 
-In the past six months, a recurring problem appeared for different people: how to decide on the best project, the best item, the best apartment among many alternatives, based on multiple criteria?
+In the past six months, a recurring problem appeared for different people: how to decide on the best project/campaign/item/apartment, among many alternatives, if you have to evaluate a lot of criteria?
 
-People may think I pick, without hesitation, some amazing Artificial Intelligence algorithm, a Deep Learning classifier, or even a Hill-climbing Ensemble Selection with Bootstrap Sampling. Yet, as Robert Browning said, "Well, less is more, Lucrezia".
+People may think I pick, without hesitation, some amazing Artificial Intelligence algorithm, a Deep Learning classifier, or even a Hill-climbing Ensemble Selection with Bootstrap Sampling. However, as Robert Browning said, ["Well, less is more, Lucrezia"](https://www.poetryfoundation.org/poems/43745/andrea-del-sarto).
 
-A Weighted Product Model (WPM) is a simple and popular technique to solve Multi-Criteria Decision Analysis problems. It basically consists of multiply all attributes values to get a score. The higher, the better.
+A [Weighted Product Model](https://www.wikiwand.com/en/Weighted_product_model) (WPM) is a simple and popular technique to solve Multi-Criteria Decision Analysis problems. It basically consists of multiply all attributes values to get a score. The higher, the better.
 
 As an example, look at the following table:
 
@@ -56,7 +57,7 @@ Weight Product Model is a very easy technique. You may use any programming langu
 
 The table above corresponds to apartments for sale in Chicago, IL, and the data was obtained from a popular real state web site. The features are the number of bedrooms (**beds**), number of bathrooms (**baths**), total **area**, homeowners association fee (**hoa**), number of **parking** spaces, **year** of the building, apartment's **floor**, **exposure** to the sun, the existence of **elevator**, and **price**.
 
-WPM is very simple to apply, but there are some pitfalls. First I'll show you how to do it right, then I'll show you what you shouldn't do.
+Despite its simplicity, there are some pitfalls. First I'll show you how to do it right, then I'll show you what you shouldn't do.
 
 Let's import some libraries:
 
@@ -128,7 +129,7 @@ weights = {'beds'          :  1.,
            'elevator'      :  1.}
 ```
 
-The idea here is to make negative the features aren't benefits. If the price goes up, the WPM Score goes down.
+The idea here is to make negative the features aren't benefits. As instance, if the price goes up, the WPM Score should goes down.
 
 Let's define the WPM function:
 
@@ -182,7 +183,7 @@ weights = {'beds'          :  1.,
            'exposure'      :  1.,
            'elevator'      :  5.}
 ```
-These weight values were purely arbitrary - and they usually depend on the judgment of the decision-maker. Also, it's possible to define a different scale. Here I used a Likert Scale because it is very straightforward.
+These weight values were purely arbitrary - and they usually depend on the judgment of the decision-maker. Also, it's possible to define a different scale. Here I used a [Likert Scale](https://www.wikiwand.com/en/Likert_scale) because it is very straightforward.
 
 Parking space, elevator, cheap HOA, and low floor are now essential; area and price are considerable, and the rest is of little importance.
 
@@ -210,6 +211,53 @@ Second: don't scale the values to [0, 1] range. Prefer values bigger than that. 
 
 Related to the weights, you can use any value. But again, keep it simple: use integers, negatives only when a feature is an onus, and beware with zero.
 
+The third caution is a bit more complicated: the features should be reasonably independent. If there is a cause-and-effect relationship between two or more of them, you should keep only one. For example, just imagine you have a feature named [**property tax**](https://smartasset.com/taxes/illinois-property-tax-calculator), which its calculation strongly depends on the apartment's price:
+
+||beds|baths|area|...|price|tax|
+|---:|-------:|--------:|-------:|-------:|--------:|------:|
+|0|1|1|700|...|199,000|4,213|
+|1|1|1|750|...|185,000|3,916|
+|2|1|1|985|...|210,000|4,446|
+|3|2|2|1200|...|209,900|4,444|
+|4|3|2|1600|...|279,000|5,906|
+
+If you calculate the [Pearson's Correlation Coefficient](https://towardsdatascience.com/pearson-coefficient-of-correlation-explained-369991d93404) between these two features:
+
+```{python}
+df[['price', 'tax']].corr()
+```
+
+You will find a perfect correlation:
+
+|       |   price |   tax |
+|:------|--------:|------:|
+| price |       1 |     1 |
+| tax   |       1 |     1 |
+
+If you add these two features, it's like you add the column **price** twice. Its weight will be doubled, making it two times more relevant. In other words, it will mess the weights.
+
+However, a high value for Pearson's Correlation may be a clue, but [not a guarantee](https://www.wikiwand.com/en/Correlation_does_not_imply_causation) the two features are dependent. As an example of that, let's test two other features, **elevator** and **parking**:
+
+```{python}
+df[['elevator', 'parking']].corr()
+```
+
+|          |   elevator |   parking |
+|:---------|-----------:|----------:|
+| elevator |          1 |         1 |
+| parking  |          1 |         1 |
+
+These two features are highly correlated, but the existence of an elevator in the building does not imply the apartment will have a parking space!
+
+So, you need to analyze the features to decide which of them you should discard.
+
 ## WPM is cool, but...
 
 Decision analysis has many techniques and solves a lot of problems. If you are interested to learn more about it, feel free to follow the links I put at the end of this post. 
+
+## References
+
+1. [Multi-Criteria Decision Making: An Operations Research Approach](https://www.semanticscholar.org/paper/Multi-Criteria-Decision-Making%3A-An-Operations-Triantaphyllou-Shu/2742bc0516f28152472ee35ea400418e0bc69f7d). Triantaphyllou, E. et al. 1998.
+2. [Add or Multiply? A Tutorial on Ranking and Choosing with Multiple Criteria](https://pubsonline.informs.org/doi/pdf/10.1287/ited.2013.0124l). Tofallis, C. 2013.
+3. [Wikipedia](https://www.wikiwand.com/en/Multiple-criteria_decision_analysis).
+4. [Journal of Multi-Criteria Decision Analysis](https://onlinelibrary.wiley.com/journal/10991360).
