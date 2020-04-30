@@ -45,7 +45,9 @@ if the weights are the same for each feature (*w<sub>i</sub> = 1*).
 
 ## A Real Life Problem
 
-Weight Product Model is a very easy technique. You may use any programming language (even a spreadsheet). To show how to do it in Python, let's take another example:
+Weight Product Model is a very easy technique. You may use any programming language or even a spreadsheet (get the code on [github](https://github.com/rnmourao/mcda-wpm)). 
+
+To show how to do it in Python, let's take another example:
 
 ||beds|baths|area|hoa|parking|year|floor|exposure|elevator|price|
 |---:|-------:|--------:|-------:|------:|----------:|-------:|--------:|:-----------|:-----------|--------:|
