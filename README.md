@@ -203,7 +203,20 @@ The WPM score now has an entirely different scale, but that doesn't matter, beca
 
 As I said before, you need to take some precautions to use the WPM correctly. 
 
-First of all, you NEED to scale the table. All features. Ever. People might say you don't need to do that because the data is already prepared or WPM itself doesn't need it. 
+First of all, you do NEED to scale the table. All features. Ever. People might say you don't need to do that because the data is already prepared or WPM itself doesn't need it.  Don't believe them: otherwise, you will mess the weights. As an example, let's take only two features: **beds** and **area** and assume the weights are equal to 2 and 1, respectively:
+
+||beds|area|wpm|
+|--:|--:|--:|--:|
+|0|3|600|5400|
+|1|2|1400|5600|
+
+As you can see, the number of bedrooms is more relevant that the total area, but the higher scale in the latter spoiled the weights. The story is different if you scale the features for a [10, 100] range:
+
+||beds|area|wpm|
+|--:|--:|--:|--:|
+|0|100|10|10<sup>5</sup>|
+|1|10|100|10<sup>4</sup>|
+
 
 Second: don't scale the values to [0, 1] range. Prefer values bigger than that. Why? Because of the following power properties:
 
