@@ -203,7 +203,7 @@ The WPM score now has an entirely different scale, but that doesn't matter, beca
 
 As I said before, you need to take some precautions to use the WPM correctly. 
 
-First of all, you do NEED to scale the table. All features. Ever. People might say you don't need to do that because the data is already prepared or WPM itself doesn't need it.  Don't believe them: otherwise, you will mess the weights. As an example, let's take only two features: **beds** and **area** and assume the weights are equal to 2 and 1, respectively:
+First of all, you MUST scale the data. All features. Ever. People might say you don't need to do that because the data is already prepared or WPM itself doesn't need it.  Don't believe them: otherwise, you will mess the weights. As an example, let's take only two features: **beds** and **area** and assume the weights are equal to 2 and 1, respectively:
 
 ||beds|area|wpm|
 |--:|--:|--:|--:|
