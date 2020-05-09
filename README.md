@@ -7,7 +7,7 @@ In the past six months, a recurring problem appeared for different people: how t
 
 People may think I pick, without hesitation, some amazing Artificial Intelligence algorithm, a Deep Learning classifier, or even a Hill-climbing Ensemble Selection with Bootstrap Sampling. However, as Robert Browning said, ["Well, less is more, Lucrezia"](https://www.poetryfoundation.org/poems/43745/andrea-del-sarto).
 
-A [Weighted Product Model](https://www.wikiwand.com/en/Weighted_product_model) (WPM) is a simple and popular technique to solve Multi-Criteria Decision Analysis problems. It basically consists of multiply all attributes values to get a score. The higher, the better.
+A [Weighted Product Model](https://www.wikiwand.com/en/Weighted_product_model) (WPM) is a simple and popular technique to solve [Multi-Criteria Decision Analysis](https://www.wikiwand.com/en/Multiple-criteria_decision_analysis) (MCDA) problems. It basically consists of multiply all attributes values to get a score. The higher, the better.
 
 As an example, look at the following table:
 
@@ -73,7 +73,7 @@ Then, I create a pandas DataFrame:
 raw = pd.read_csv('apartments.csv')
 ```
 
-WPM uses only numerical features. So, I convert *exposure* and *elevator* to numeric:
+WPM uses only numerical features. So, I convert **exposure** and **elevator** to numeric:
 
 ```{python}
 # keep original data safe
@@ -272,7 +272,6 @@ Decision analysis has many techniques and solves a lot of problems. If you are i
 
 ## References
 
-1. [Multi-Criteria Decision Making: An Operations Research Approach](https://www.semanticscholar.org/paper/Multi-Criteria-Decision-Making%3A-An-Operations-Triantaphyllou-Shu/2742bc0516f28152472ee35ea400418e0bc69f7d). Triantaphyllou, E. et al. 1998.
-2. [Add or Multiply? A Tutorial on Ranking and Choosing with Multiple Criteria](https://pubsonline.informs.org/doi/pdf/10.1287/ited.2013.0124l). Tofallis, C. 2013.
-3. [Wikipedia](https://www.wikiwand.com/en/Multiple-criteria_decision_analysis).
-4. [Journal of Multi-Criteria Decision Analysis](https://onlinelibrary.wiley.com/journal/10991360).
+[1] E. Triantaphyllou, B. Shu, S. Sánchez and T. Ray, [Multi-Criteria Decision Making: An Operations Research Approach](https://www.semanticscholar.org/paper/Multi-Criteria-Decision-Making%3A-An-Operations-Triantaphyllou-Shu/2742bc0516f28152472ee35ea400418e0bc69f7d) (1998), Encyclopedia of Electrical and Electronics Engineering
+
+[2] C. Tofallis, [Add or Multiply? A Tutorial on Ranking and Choosing with Multiple Criteria](https://pubsonline.informs.org/doi/pdf/10.1287/ited.2013.0124) (2013), INFORMS Transactions on Education
